@@ -32,8 +32,6 @@
   <canvas width="320" height="640" id="game"></canvas>
 
   <script>
-    // https://tetris.fandom.com/wiki/Tetris_Guideline
-
     // get a random integer between the range of [min,max]
     // @see https://stackoverflow.com/a/1527820/2124254
     function getRandomInt(min, max) {
@@ -43,8 +41,6 @@
       return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
-    // generate a new tetromino sequence
-    // @see https://tetris.fandom.com/wiki/Random_Generator
     function generateSequence() {
       const sequence = ['I', 'J', 'L', 'O', 'S', 'T', 'Z'];
 
@@ -135,8 +131,7 @@
               playfield[r][c] = playfield[r - 1][c];
             }
           }
-        }
-        else {
+        } else {
           row--;
         }
       }
@@ -231,12 +226,14 @@
     };
 
     let count = 0;
+    let framesPerFall = 35;
     let tetromino = getNextTetromino();
     let rAF = null;  // keep track of the animation frame so we can cancel it
     let gameOver = false;
 
     // game loop
     function loop() {
+      
       rAF = requestAnimationFrame(loop);
       context.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -257,7 +254,7 @@
       if (tetromino) {
 
         // tetromino falls every 35 frames
-        if (++count > 35) {
+        if (++count > framesPerFall) {
           tetromino.row++;
           count = 0;
 
@@ -352,7 +349,6 @@
 
     // listen to keyboard events to move the active tetromino
     document.addEventListener('keydown', function (e) {
-      document.getElementById("output").innerHTML = 'working'
       if (gameOver) return;
 
       // left and right arrow keys (move)
