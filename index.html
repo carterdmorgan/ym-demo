@@ -51,7 +51,7 @@
       }
     }
 
-    // get the next tetromino in the sequence
+    // get the next item in the sequence
     function getNextTetromino() {
       if (tetrominoSequence.length === 0) {
         generateSequence();
@@ -105,7 +105,7 @@
       return true;
     }
 
-    // place the tetromino on the playfield
+    // place the item on the playfield
     function placeTetromino() {
       for (let row = 0; row < tetromino.matrix.length; row++) {
         for (let col = 0; col < tetromino.matrix[row].length; col++) {
@@ -162,7 +162,7 @@
     const tetrominoSequence = [];
 
     // keep track of what is in every cell of the game using a 2d array
-    // tetris playfield is 10x20, with a few rows offscreen
+    // playfield is 10x20, with a few rows offscreen
     const playfield = [];
 
     // populate the empty state
@@ -174,8 +174,7 @@
       }
     }
 
-    // how to draw each tetromino
-    // @see https://tetris.fandom.com/wiki/SRS
+    // how to draw each piece
     const tetrominos = {
       'I': [
         [0, 0, 0, 0],
@@ -214,7 +213,7 @@
       ]
     };
 
-    // color of each tetromino
+    // color of each piece
     const colors = {
       'I': 'cyan',
       'O': 'yellow',
@@ -250,10 +249,10 @@
         }
       }
 
-      // draw the active tetromino
+      // draw the active piece
       if (tetromino) {
 
-        // tetromino falls every 35 frames
+        // piece falls every 35 frames
         if (++count > framesPerFall) {
           tetromino.row++;
           count = 0;
@@ -310,8 +309,6 @@
       var xDiff = xDown - xUp;
       var yDiff = yDown - yUp;
 
-      // changeOutput(`(${xDown},${yDown}) - (${xUp},${yUp})`)
-
       if (Math.abs(xDiff) > Math.abs(yDiff)) {/*most significant*/
         // left or right
         const col = xDiff > 0
@@ -347,7 +344,7 @@
       yDown = null;
     };
 
-    // listen to keyboard events to move the active tetromino
+    // listen to keyboard events to move the active piece
     document.addEventListener('keydown', function (e) {
       if (gameOver) return;
 
