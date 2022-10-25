@@ -14,7 +14,7 @@
     }
 
     body {
-      background: black;
+      background: red;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -131,6 +131,7 @@
               playfield[r][c] = playfield[r - 1][c];
             }
           }
+          framesPerFall -= 10
         } else {
           row--;
         }
@@ -225,7 +226,7 @@
     };
 
     let count = 0;
-    let framesPerFall = 35;
+    let framesPerFall = 10;
     let tetromino = getNextTetromino();
     let rAF = null;  // keep track of the animation frame so we can cancel it
     let gameOver = false;
